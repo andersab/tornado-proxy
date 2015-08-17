@@ -30,12 +30,18 @@ import os
 import sys
 import socket
 from urlparse import urlparse
+import argparse
 
 import tornado.httpserver
 import tornado.ioloop
 import tornado.iostream
 import tornado.web
 import tornado.httpclient
+
+USAGE = """
+"""
+
+DESCRIPTION = """SiteMocker a SiteMinder mocking server."""
 
 logger = logging.getLogger('tornado_proxy')
 
@@ -189,6 +195,10 @@ def run_proxy(port, start_ioloop=True):
     ioloop = tornado.ioloop.IOLoop.instance()
     if start_ioloop:
         ioloop.start()
+
+
+def parse_cmd_args():
+    parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION, version=VERSION)
 
 if __name__ == '__main__':
     port = 8888
